@@ -22,8 +22,8 @@ public class CalculateServiceImpl implements CalculateService {
     private Integer calculateWorkingDays(LocalDate startDate, LocalDate endDate) {
         Integer workingDays = 0;
         for (LocalDate date = startDate; !date.isAfter(endDate); date = date.plusDays(1)) {
-            if ((!(date.getDayOfWeek().getValue() == 6 || date.getDayOfWeek().getValue() == 7) ||
-                    (HOLIDAYS.containsValue(date.getMonth())) && HOLIDAYS.get(date.getMonth()).contains(date.getDayOfMonth()))) {
+            if (!(date.getDayOfWeek().getValue() == 6 || date.getDayOfWeek().getValue() == 7 ||
+                    (HOLIDAYS.containsKey(date.getMonth())&& HOLIDAYS.get(date.getMonth()).contains(date.getDayOfMonth())))) {
                 workingDays++;
             }
         }
